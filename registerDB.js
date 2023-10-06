@@ -26,7 +26,7 @@ function submitForm(e){
         
 	console.log(fname,lname,gender);
 	saveMessage(fname,lname,email,Password,number,gender);
-	
+	alert("Registered Successfully");
 }
 const saveMessage=(firstName,lastName,email,Password,number,Gender)=>{
 	var newRegister=registerDB.push();
