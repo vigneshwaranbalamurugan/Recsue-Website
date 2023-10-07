@@ -123,11 +123,13 @@ function init() {
   marker = createMarker({ map, position: initialPosition });
   const $info = document.getElementById('info');
   const $mess=document.getElementById('mess');
+  const $loc=document.getElementById('loc');
   let watchId = trackLocation({
     onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
       marker.setPosition({ lat, lng });
       map.panTo({ lat, lng });
       $info.textContent = "Your Location- "+`Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
+      $loc.innerHTML = `<a href="https://www.google.com/maps?q=${lat.toFixed(5)},${lng.toFixed(5)}">View on Google Maps</a>`;
       $mess.href = `sms:8940790989?body=https://www.google.com/maps?q=${lat.toFixed(5)},${lng.toFixed(5)}`;
       $info.classList.remove('error');
     },
