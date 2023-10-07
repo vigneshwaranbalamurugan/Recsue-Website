@@ -25,6 +25,7 @@ body {
 .map {
     flex: 1;
     background: #f0f0f0;
+	
 }
 
 .info {
@@ -32,10 +33,49 @@ body {
     margin: 0;
 	justify-content:center;
 	display:flex;
-	color:red;
+	color:black;
 	background:#b3abd0;
 }
+.mess{
+    font-weight: bold;
+    margin: 0 auto; /* Center horizontally by setting left and right margins to 'auto' */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:red;
+    /* Center vertically by setting the height of the element to 100% of the viewport height */
+	border-radius: 100%;
+    width: 100px; /* Set a fixed width and height for the circular button */
+    height: 100px;
+    cursor: pointer; /* Add a pointer cursor for hover effect */
+    transition: background-color 0.3s; /* Smooth background color transition on hover */
+	 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+/* Add padding to make the button larger */
+}
+.mess::before {
+    content: "Emergency"; /* Add your desired text here */
+    position: absolute;
+    justify-content:center;
+	margin-left:80px;
+	margin-top:25px;
+	align-items:center;
+	display:grid;
+    transform: translate(-50%, -50%); /* Center the text horizontally and vertically */
+	
+}
+.mess:hover {
+    background: #3b25da; /* Change background color on hover */
+}
 
+.loc{
+	font-weight:bold;
+    margin: 50;
+	justify-content:center;
+	display:flex;
+	align-items:center;
+
+	background:#b3abd0;
+}
 .info.error {
     color: #fff;
     background: #dc3545;
