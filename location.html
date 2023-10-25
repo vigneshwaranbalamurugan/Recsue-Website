@@ -30,7 +30,8 @@
 				<th>LastName</th>
 			    <th>Contact</th>
 				<th>Email</th>
-                <th>Gender</th>
+                               <th>Gender</th>
+		               <th>Department</th>
 				<th>City</th>
 				<th>District</th>
             </tr>
@@ -93,7 +94,7 @@ dbRef.on('value', function(snapshot) {
       var data = childSnapshot.val();
       var row = document.createElement('tr');
       row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
-	  <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
+	  <td>${data.Gender}</td><td>${data.Rescuetype}</td><td>${data.City}</td><td>${data.District}</td>`;
       tableBody.appendChild(row);
     });
   });
