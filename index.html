@@ -3,39 +3,60 @@
   <title>Registration form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <style>
+  a{
+  border:3px;
+  background-color:lightblue;
+  height:
+  }
+  </style>
+  
 </head>
   <body>
     <div class="container">
-      <div class="row col-md-6 col-md-offset-3">
+      <div class="row col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
           <div class="panel-heading text-center">
             <h1>Registration Form</h1>
           </div>
           <div class="panel-body">
             <form method="get" id="Registeration">
+			 <div class="form-group">
+               <label for="teamName">Team Name:</label>
+           <input
+                   type="text" 
+				   id="teamName"
+				   name="teamName"
+				   class="form-control"
+				   required>
+              </div>
               <div class="form-group">
-                <label for="firstName">First Name</label>
+                <label for="firstName">Team Leader Name:</label>
                 <input
                   type="text"
                   class="form-control"
                   id="firstName"
                   name="firstName"
+				  required
                 />
               </div>
               <div class="form-group">
-                <label for="lastName">Last Name</label>
+                <label for="lastName">Team Last Name:</label>
                 <input
                   type="text"
                   class="form-control"
                   id="lastName"
                   name="lastName"
+				  required
                 />
               </div>
               <div class="form-group">
-                <label for="gender">Gender</label>
+                <label for="gender">Gender:</label>
                 <div>
                   <label for="male" class="radio-inline"
                     ><input
@@ -64,43 +85,123 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email:</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="email"
                   name="email"
+				  required
                 />
               </div>
               <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  name="password"
-                />
-              </div>
-              <div class="form-group">
-                <label for="number">Phone Number</label>
+                <label for="number">Phone Number:</label>
                 <input
                   type="number"
                   class="form-control"
                   id="number"
                   name="number"
+				  required
                 />
               </div>
-			
-               <a href="location.html">Your Location</a>
-              <br>
-              <input type="submit" class="btn btn-primary" />
+			  <div class="form-group">
+                <label for="websiteAddress">Website Address:</label>
+                 <input 
+				    type="text"
+					id="websiteAddress"
+					class="form-control"
+					name="websiteAddress">
+              </div>
+			  <div class="form-group">
+                <label for="teamMembers">Team Members Details:</label>
+        <textarea 
+		           id="teamMembers"
+				   name="teamMembers"
+				   rows="4"
+				   required
+				   class="form-control"></textarea>
+
+              </div>
+			  <div class="form-group">
+			    <label for="restype">Rescue Department:</label>
+			     <input 
+				 type="text" 
+				 id="restype"
+				 class="form-control">
+			 </div>
+			 <div class="form-group">
+			        <label for="lat">Latitude:</label>
+			        <input 
+					type="number" 
+					step="0.0000001" 
+					id="lat" 
+					class="form-control" readonly>
+			    <label for="long">Longitude:</label>
+			    <input 
+				type="number" 
+				step="0.0000001" 
+				id="long" 
+				class="form-control" readonly>
+			   <p id="x">
+			 </div>
+			 <div class="form-group">
+			  <button class="btn btn-sm btn-info" onclick="locationn()">Use location</button>
+			  
+			 </div>
+			 <div class="form-group">
+			 <label for="city" >City:</label>
+			 <input 
+			 type="text" 
+			 id="city" 
+			 class="form-control">
+			 </div>
+			 <div class="form-group">
+			  <label for="district" >District:</label>
+			 <input 
+			 type="text" 
+			 id="district" 
+			 class="form-control">
+			 </div>
+			  <div class="form-group">
+			   <label for="missionValues">Team Mission and Values:</label>
+                <textarea 
+				id="missionValues" 
+				name="missionValues" 
+				rows="4" 
+				class="form-control"required></textarea>
+			  </div>
+			  <div class="form-group">
+			    <label for="teamHistory">Team History:</label>
+                <textarea 
+				id="teamHistory" 
+				name="teamHistory" 
+				rows="4" 
+				class="form-control"required></textarea>
+                  <label for="teamEquipment">Team Equipment:</label>
+                 <textarea 
+				 id="teamEquipment"
+				 name="teamEquipment" 
+				 rows="4" 
+				 class="form-control"required></textarea>
+
+                 <label for="teamTraining">Team Training:</label>
+                 <textarea 
+				 id="teamTraining" 
+				 name="teamTraining" 
+				 rows="4" 
+				 class="form-control"required></textarea>
+				 </div>
+                <input type="submit" class="btn btn-primary">
+				
             </form>
           </div>
         </div>
       </div>
     </div>
-  </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script> 
-  <script src="registerDB.js"></script>
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script> 
+  <script src="registerDB.js"></script>
+  
+  </body>
+  
 </html>
