@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>🌏 Google Maps Geolocation Example</title>
+  <title>🌏Location</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
   <link rel="stylesheet" href="styles.css"> <!-- Your custom styles -->
   <style>
   #mess{
@@ -19,8 +20,94 @@
 	<p id="loc" class="loc"></p>
 	<a href="" id="mess" class="mess"></a>
   </main>
+  <br>
+  <br>
+  <div class="container">
+  <select id="City">
+  </select>
+  <select id="District">
+  </select>
+  </div>
+  <main class="container">
+  <table class="table table-responsive-lg table-bordered table-hover table-responsive-sm table-responsive-md">
+        <thead class="table-danger">
+            <tr>
+                <th>FirstName</th>
+				<th>LastName</th>
+			    <th>Contact</th>
+				<th>Email</th>
+                <th>Gender</th>
+				<th>City</th>
+				<th>District</th>
+            </tr>
+        </thead>
+        <tbody id="table-body" class="table-primary">
+            <!-- Data will be dynamically populated here -->
+        </tbody>
+    </table>
+  </main>
   
+   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDhk_8bhmMUo2pclKIksTpbVgftyB_IFRY",
+    authDomain: "register1-45164.firebaseapp.com",
+    databaseURL: "https://register1-45164-default-rtdb.firebaseio.com",
+    projectId: "register1-45164",
+    storageBucket: "register1-45164.appspot.com",
+    messagingSenderId: "614555310804",
+    appId: "1:614555310804:web:47e87fd212f77b6b0db941"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  // Reference to your Firebase database
+  var dbRef = firebase.database().ref('Registeration'); // Change to your actual reference
+    	
+  dbRef.on('value', function(snapshot) {
+  const countriesDropDown = document.getElementById("City");
+  countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
+
+  snapshot.forEach(function(childSnapshot) {
+    const data = childSnapshot.val(); // Retrieve the data from the snapshot
+    const option = document.createElement("option");
+    option.setAttribute('value', data.City); // Set the value attribute to the City value
+    const optionText = document.createTextNode(data.City); // Create a text node with the City value
+    option.appendChild(optionText); // Append the text node to the option
+    countriesDropDown.appendChild(option); // Append the option to the dropdown
+  });
+});
+dbRef.on('value', function(snapshot) {
+  const countriesDropDown = document.getElementById("District");
+  countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
+
+  snapshot.forEach(function(childSnapshot) {
+    const data = childSnapshot.val(); // Retrieve the data from the snapshot
+    const option = document.createElement("option");
+    option.setAttribute('value', data.District); // Set the value attribute to the City value
+    const optionText = document.createTextNode(data.District); // Create a text node with the City value
+    option.appendChild(optionText); // Append the text node to the option
+    countriesDropDown.appendChild(option); // Append the option to the dropdown
+  });
+});
+
+  // Fetch data and populate the table
+  dbRef.on('value', function(snapshot) {
+    var tableBody = document.getElementById('table-body');
+    tableBody.innerHTML = ''; // Clear existing data
+    snapshot.forEach(function(childSnapshot) {
+      var data = childSnapshot.val();
+      var row = document.createElement('tr');
+      row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
+	  <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
+      tableBody.appendChild(row);
+    });
+  });
+
+     
+  </script>
    <!-- Bootstrap JS and jQuery -->
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
