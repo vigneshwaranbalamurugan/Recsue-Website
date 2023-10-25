@@ -1,9 +1,4 @@
-/**
- * Create google maps Map instance.
- * @param {number} lat
- * @param {number} lng
- * @return {Object}
- */
+
 const createMap = ({ lat, lng }) => {
   return new google.maps.Map(document.getElementById('map'), {
     center: { lat, lng },
@@ -11,9 +6,7 @@ const createMap = ({ lat, lng }) => {
   });
 };
 
-/**
- * Device Orientation which help's to move marker to rotate.
- */
+
       
  window.addEventListener("deviceorientation", handleOrientation, true);
 
@@ -37,12 +30,7 @@ function handleOrientation(event) {
   console.log('glb',glb);
 }
 
-/**
- * Create google maps Marker instance.
- * @param {Object} map
- * @param {Object} position
- * @return {Object}
- */
+
      
 const createMarker = ({ map, position }) => {
   
@@ -73,12 +61,7 @@ circle.bindTo('center', myLocationMarker, 'position');
 };
 
 
-/**
- * Track the user location.
- * @param {Object} onSuccess
- * @param {Object} [onError]
- * @return {number}
- */
+
 const trackLocation = ({ onSuccess, onError = () => { } }) => {
   if ('geolocation' in navigator === false) {
     return onError(new Error('Geolocation is not supported by your browser.'));
@@ -91,11 +74,7 @@ const trackLocation = ({ onSuccess, onError = () => { } }) => {
   });
 };
 
-/**
- * Get position error message from the given error code.
- * @param {number} code
- * @return {String}
- */
+
 const getPositionErrorMessage = code => {
   switch (code) {
     case 1:
@@ -107,14 +86,7 @@ const getPositionErrorMessage = code => {
   }
 }
 
-/**
- * Initialize the application.
- * Automatically called by the google maps API once it's loaded.
-*/
-// if(window.innerHeight > window.innerWidth){
-//     alert("Please use Landscape!");
-// }
-// Listen for orientation changes
+
 
 var marker;
 function init() {
@@ -149,9 +121,7 @@ const urlCatchers = [
   "/QuotaService.RecordEvent?"
 ];
 
-// Google Map is using JSONP.
-// So we only need to detect the services removing access and disabling them by not
-// inserting them inside the DOM
+
 Element.prototype.appendChild = function (element) {
   const isGMapScript = element.tagName === 'SCRIPT' && /maps\.googleapis\.com/i.test(element.src);
   const isGMapAccessScript = isGMapScript && urlCatchers.some(url => element.src.includes(url));
@@ -160,13 +130,7 @@ Element.prototype.appendChild = function (element) {
     return appendChild.call(this, element);
   }
 
-  // Extract the callback to call it with success data
-  // Only needed if you actually want to use Autocomplete/SearchBox API
-  //const callback = element.src.split(/.*callback=([^\&]+)/, 2).pop();
-  //const [a, b] = callback.split('.');
-  //window[a][b]([1, null, 0, null, null, [1]]);
-
-  // Returns the element to be compliant with the appendChild API
+ 
   return element;
 };
 
