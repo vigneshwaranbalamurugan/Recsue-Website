@@ -44,7 +44,9 @@ function submitForm(e){
 	
 	//Save the inputs to cloud
 	saveMessage(fname,lname,gender,email,number,teamname,webadd,teamem,restype,lat,lon,city,district,missionval,teamhis,teamequip,teamtrain);
-
+        var form_reset=document.getElementById("Registeration");
+	form_reset.reset();
+	alert("Form Submitted Successfully");
 }
 
 //Function for cloud save
