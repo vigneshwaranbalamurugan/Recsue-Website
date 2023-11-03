@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>🌏Location</title>
+  <title>🌏 Google Maps Geolocation Example</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
@@ -22,6 +22,25 @@
   </main>
   <br>
   <br>
+  <div class="filter">
+  <div class="row">
+  <div class="col-lg-4 col-sm-4">
+  <label class="bold">Rescuetype</label>
+  <select id="Dept" class="form-control">
+  </select>
+  </div>
+  <div class="col-lg-4 col-sm-4">
+   <label class="bold">City</label>
+  <select id="City" class="form-control">
+  </select>
+  </div>
+  <div class="col-lg-4 col-sm-4">
+   <label class="bold">District</label>
+  <select id="District" class="form-control">
+  </select>
+  </div>
+  </div>
+  </div>
   <main class="container">
   <table class="table table-responsive-lg table-bordered table-hover table-responsive-sm table-responsive-md">
         <thead class="table-danger">
@@ -30,8 +49,7 @@
 				<th>LastName</th>
 			    <th>Contact</th>
 				<th>Email</th>
-                               <th>Gender</th>
-		               <th>Department</th>
+                <th>Gender</th>
 				<th>City</th>
 				<th>District</th>
             </tr>
@@ -85,6 +103,19 @@ dbRef.on('value', function(snapshot) {
     countriesDropDown.appendChild(option); // Append the option to the dropdown
   });
 });
+dbRef.on('value', function(snapshot) {
+  const countriesDropDown = document.getElementById("Dept");
+  countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
+
+  snapshot.forEach(function(childSnapshot) {
+    const data = childSnapshot.val(); // Retrieve the data from the snapshot
+    const option = document.createElement("option");
+    option.setAttribute('value', data.Rescuetype); // Set the value attribute to the City value
+    const optionText = document.createTextNode(data.Rescuetype); // Create a text node with the City value
+    option.appendChild(optionText); // Append the text node to the option
+    countriesDropDown.appendChild(option); // Append the option to the dropdown
+  });
+});
 
   // Fetch data and populate the table
   dbRef.on('value', function(snapshot) {
@@ -94,7 +125,7 @@ dbRef.on('value', function(snapshot) {
       var data = childSnapshot.val();
       var row = document.createElement('tr');
       row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
-	  <td>${data.Gender}</td><td>${data.Rescuetype}</td><td>${data.City}</td><td>${data.District}</td>`;
+	  <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
       tableBody.appendChild(row);
     });
   });
