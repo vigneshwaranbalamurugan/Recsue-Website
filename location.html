@@ -76,37 +76,75 @@
 
   // Reference to your Firebase database
   var dbRef = firebase.database().ref('Registeration'); // Change to your actual reference
-    	
-  dbRef.on('value', function(snapshot) {
-  const countriesDropDown = document.getElementById("City");
-  countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
 
-  snapshot.forEach(function(childSnapshot) {
-    const data = childSnapshot.val(); // Retrieve the data from the snapshot
-    const option = document.createElement("option");
-    option.setAttribute('value', data.City); // Set the value attribute to the City value
-    const optionText = document.createTextNode(data.City); // Create a text node with the City value
-    option.appendChild(optionText); // Append the text node to the option
-    countriesDropDown.appendChild(option); // Append the option to the dropdown
-  });
+ dbRef.on('value', function(snapshot) {
+    const countriesDropDown = document.getElementById("City");
+    countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
+
+    // Use a Set to store unique city names
+    const uniqueCities = new Set();
+
+    // Add the 'ALL' option to the dropdown
+    const allOption = document.createElement("option");
+    allOption.setAttribute('value', 'ALL'); // Set the value attribute to 'ALL'
+    const allOptionText = document.createTextNode('ALL'); // Create a text node with 'ALL'
+    allOption.appendChild(allOptionText); // Append the text node to the option
+    countriesDropDown.appendChild(allOption); // Append the option to the dropdown
+
+    snapshot.forEach(function(childSnapshot) {
+        const data = childSnapshot.val(); // Retrieve the data from the snapshot
+        const city = data.City;
+
+        // Check if the city is not already in the Set before adding it to the dropdown
+        if (!uniqueCities.has(city)) {
+            uniqueCities.add(city); // Add the city to the Set
+            const option = document.createElement("option");
+            option.setAttribute('value', city); // Set the value attribute to the City value
+            const optionText = document.createTextNode(city); // Create a text node with the City value
+            option.appendChild(optionText); // Append the text node to the option
+            countriesDropDown.appendChild(option); // Append the option to the dropdown
+        }
+    });
 });
+
 dbRef.on('value', function(snapshot) {
-  const countriesDropDown = document.getElementById("District");
-  countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
+    const countriesDropDown = document.getElementById("District");
+    countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
 
-  snapshot.forEach(function(childSnapshot) {
-    const data = childSnapshot.val(); // Retrieve the data from the snapshot
-    const option = document.createElement("option");
-    option.setAttribute('value', data.District); // Set the value attribute to the City value
-    const optionText = document.createTextNode(data.District); // Create a text node with the City value
-    option.appendChild(optionText); // Append the text node to the option
-    countriesDropDown.appendChild(option); // Append the option to the dropdown
-  });
+    // Use a Set to store unique city names
+    const uniqueDistrict = new Set();
+
+    // Add the 'ALL' option to the dropdown
+    const allOption = document.createElement("option");
+    allOption.setAttribute('value', 'ALL'); // Set the value attribute to 'ALL'
+    const allOptionText = document.createTextNode('ALL'); // Create a text node with 'ALL'
+    allOption.appendChild(allOptionText); // Append the text node to the option
+    countriesDropDown.appendChild(allOption); // Append the option to the dropdown
+
+    snapshot.forEach(function(childSnapshot) {
+        const data = childSnapshot.val(); // Retrieve the data from the snapshot
+        const District = data.District;
+
+        // Check if the city is not already in the Set before adding it to the dropdown
+        if (!uniqueDistrict.has(District)) {
+            uniqueDistrict.add(District); // Add the city to the Set
+            const option = document.createElement("option");
+            option.setAttribute('value', District); // Set the value attribute to the City value
+            const optionText = document.createTextNode(District); // Create a text node with the City value
+            option.appendChild(optionText); // Append the text node to the option
+            countriesDropDown.appendChild(option); // Append the option to the dropdown
+        }
+    });
 });
+
 dbRef.on('value', function(snapshot) {
   const countriesDropDown = document.getElementById("Dept");
   countriesDropDown.innerHTML = ''; // Clear the dropdown before adding new options
-
+const allOption = document.createElement("option");
+    allOption.setAttribute('value', 'ALL'); // Set the value attribute to 'ALL'
+    const allOptionText = document.createTextNode('ALL'); // Create a text node with 'ALL'
+    allOption.appendChild(allOptionText); // Append the text node to the option
+    countriesDropDown.appendChild(allOption); // Append the option to the dropdown
   snapshot.forEach(function(childSnapshot) {
     const data = childSnapshot.val(); // Retrieve the data from the snapshot
     const option = document.createElement("option");
@@ -116,9 +154,31 @@ dbRef.on('value', function(snapshot) {
     countriesDropDown.appendChild(option); // Append the option to the dropdown
   });
 });
+var DeptDropdown = document.getElementById('Dept'); // Corrected variable name (DeptDropdown)
+var CityDropdown = document.getElementById('City'); // Corrected variable name (CityDropdown)
+var DistrictDropdown = document.getElementById('District'); // Corrected variable name (DistrictDropdown)
 
-  // Fetch data and populate the table
-  dbRef.on('value', function(snapshot) {
+DeptDropdown.addEventListener('change', function() {
+    var selectedFilter = DeptDropdown.value;
+    CityDropdown.value = "ALL";
+	DistrictDropdown.value = "ALL"; 
+    filterData(selectedFilter, 'Rescuetype');
+});
+CityDropdown.addEventListener('change', function() {
+    var selectedFilter = CityDropdown.value;
+	DeptDropdown.value = "ALL"; 
+	DistrictDropdown.value = "ALL"; 
+    filterData(selectedFilter,'City');
+});
+
+DistrictDropdown.addEventListener('change', function() {
+    var selectedFilter = DistrictDropdown.value;
+	CityDropdown.value = "ALL"; 
+	DeptDropdown.value = "ALL"; 
+    filterData(selectedFilter,'District');
+});
+
+dbRef.on('value', function(snapshot) {
     var tableBody = document.getElementById('table-body');
     tableBody.innerHTML = ''; // Clear existing data
     snapshot.forEach(function(childSnapshot) {
@@ -129,7 +189,36 @@ dbRef.on('value', function(snapshot) {
       tableBody.appendChild(row);
     });
   });
-
+  
+ function filterData(filterValue,search) {
+   if(filterValue=='ALL'){
+   dbRef.on('value', function(snapshot) {
+    var tableBody = document.getElementById('table-body');
+    tableBody.innerHTML = ''; // Clear existing data
+    snapshot.forEach(function(childSnapshot) {
+      var data = childSnapshot.val();
+      var row = document.createElement('tr');
+      row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
+	  <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
+      tableBody.appendChild(row);
+    });
+  });
+  
+   }
+   else{
+    dbRef.orderByChild(search).equalTo(filterValue).on('value', function(snapshot) {
+        var tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = ''; // Clear existing data
+        snapshot.forEach(function(childSnapshot) {
+            var data = childSnapshot.val();
+            var row = document.createElement('tr');
+            row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
+            <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
+            tableBody.appendChild(row);
+        });
+    });
+	}
+}	
      
   </script>
    <!-- Bootstrap JS and jQuery -->
