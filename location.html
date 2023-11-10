@@ -199,7 +199,7 @@ dbRef.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var data = childSnapshot.val();
       var row = document.createElement('tr');
-      row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
+      row.innerHTML = `<td>${data.Rescuetype}</td><td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
 	  <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
       tableBody.appendChild(row);
     });
@@ -213,7 +213,7 @@ dbRef.on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var data = childSnapshot.val();
             var row = document.createElement('tr');
-            row.innerHTML = `<td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
+            row.innerHTML = `<td>${data.Rescuetype}</td><td>${data.FirstName}</td><td>${data.LastName}</td><td><a href="tel:${data.MobileNumber}">${data.MobileNumber}</a></td><td>${data.Email}</td>
             <td>${data.Gender}</td><td>${data.City}</td><td>${data.District}</td>`;
             tableBody.appendChild(row);
         });
