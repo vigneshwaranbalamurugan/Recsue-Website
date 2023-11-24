@@ -102,7 +102,7 @@ function init() {
       map.panTo({ lat, lng });
       $info.textContent = "Your Location- "+`Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
       $loc.innerHTML = `<a href="https://www.google.com/maps?q=${lat.toFixed(5)},${lng.toFixed(5)}">View on Google Maps</a>`;
-      $mess.href = `sms:8940790989?body=https://www.google.com/maps?q=${lat.toFixed(5)},${lng.toFixed(5)}`;
+      $mess.href = `sms:9345847062 ?body=https://www.google.com/maps?q=${lat.toFixed(5)},${lng.toFixed(5)}`;
       $info.classList.remove('error');
     },
     onError: err => {
