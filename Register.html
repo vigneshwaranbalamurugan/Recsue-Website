@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>LOGIN</title>
+    <!-- Add Bootstrap CSS -->
+	<style>
+	   body {
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+        }
+	    form {
+            border: 3px solid white;
+            background-color:#b3abd0;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }	
+		.button {
+    background-color:#441bc7;
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin: 9px 2px;
+    border: 3px;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+    background-color: #f90619;
+}
+.anker{
+color:black;}
+	</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container mt-5" >
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="Register-form" style="display:block" method="get" class="was-validated border-light p-4 shadow-lg rounded">
+                <h1 class="text-center" style="font-weight: bold;">Register</h1>
+                <div class="text-center">
+                    <img src="LOGIN-LOGO.jpg" alt="Avatar" class="img-fluid rounded-circle" style="max-width: 200px;">
+                </div>
+
+                <div class="form-group">
+                    <label for="username" style="font-weight: bold;">E-mail</label>
+                    <input type="text" class="form-control" id="email" name="name" placeholder="Username" required>
+                </div>
+
+                <div class="form-group">
+                    <label style="font-weight: bold;">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                  <label style="font-weight: bold;">Confirm Password</label>
+                  <input type="password" class="form-control" id="cnfrm-password" name="cnfrm-password" placeholder="Confirm-Password" required>
+                  <div class="valid-feedback">Password Matched</div>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" onlick="showpassword()" id="show-pass">
+                  <label  style="font-weight: bold;">Show Password</label>
+                </div>
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="button" id="register-btn" >Register</button>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="LOGIN-PAGE.html" class="anker">Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container mt-5" id="register" style="display:none;">
+    <div class="row justify-content-center ">
+      <div class=" col-md-8 col-md-offset-2 panel panel-primary">
+        <div class="panel-heading text-center">
+          <h1>Registration Form</h1>
+        </div>
+        <div class="panel-body">
+          <form method="get" id="Registeration" class="was-validated">
+           <div class="form-group">
+             <label for="teamName">Team Name:</label>
+         <input
+                 type="text" 
+                 id="teamName"
+                 name="teamName"
+                 class="form-control"
+                 required>
+            </div>
+            <div class="form-group">
+              <label for="firstName">Team Leader Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Team Last Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                name="lastName"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender:</label>
+              <div>
+                <label for="male" class="radio-inline"
+                  ><input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    id="male"
+                  />Male</label
+                >
+                <label for="female" class="radio-inline"
+                  ><input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    id="female"
+                  />Female</label
+                >
+                <label for="others" class="radio-inline"
+                  ><input
+                    type="radio"
+                    name="gender"
+                    value="others"
+                    id="others"
+                  />Others</label
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="number">Phone Number:</label>
+              <div class="input-group">
+              <input
+                type="number"
+                class="form-control"
+                id="number"
+                name="number"
+                required
+              />
+              <!--<span class="input-group-text bg-info"><button class="bg-info" id="verifynum">Verify</button></span>-->
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="websiteAddress">Website Address:</label>
+               <input 
+                  type="text"
+                  id="websiteAddress"
+                  class="form-control"
+                  name="websiteAddress">
+            </div>
+            <div class="form-group">
+              <label for="teamMembers">Team Members Details:</label>
+      <textarea 
+                 id="teamMembers"
+                 name="teamMembers"
+                 rows="4"
+                 required
+                 class="form-control"></textarea>
+
+            </div>
+            <div class="form-group">
+              <label for="restype">Rescue Department:</label>
+               <input 
+               type="text" 
+               id="restype"
+               class="form-control"
+               required>
+           </div>
+           <div class="form-group">
+                  <label for="lat">Latitude:</label>
+                  <input 
+                  type="number" 
+                  step="0.0000001" 
+                  id="lat" 
+                  class="form-control" required readonly>
+              <label for="long">Longitude:</label>
+              <input 
+              type="number" 
+              step="0.0000001" 
+              id="long" 
+              class="form-control" required readonly>
+             <p id="x">
+           </div>
+           <div class="form-group">
+            <button class="btn btn-sm btn-info" onclick="locationn()">Use location</button>
+            
+           </div>
+           <div class="form-group">
+           <label for="city" >City:</label>
+           <input 
+           type="text" 
+           id="city" 
+           class="form-control"
+           required>
+           </div>
+           <div class="form-group">
+            <label for="district" >District:</label>
+           <input 
+           type="text" 
+           id="district" 
+           class="form-control" required>
+           </div>
+            <div class="form-group">
+             <label for="missionValues">Team Mission and Values:</label>
+              <textarea 
+              id="missionValues" 
+              name="missionValues" 
+              rows="4" 
+              class="form-control"required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="teamHistory">Team History:</label>
+              <textarea 
+              id="teamHistory" 
+              name="teamHistory" 
+              rows="4" 
+              class="form-control"required></textarea>
+                <label for="teamEquipment">Team Equipment:</label>
+               <textarea 
+               id="teamEquipment"
+               name="teamEquipment" 
+               rows="4" 
+               class="form-control"required></textarea>
+
+               <label for="teamTraining">Team Training:</label>
+               <textarea 
+               id="teamTraining" 
+               name="teamTraining" 
+               rows="4" 
+               class="form-control"required></textarea>
+               </div>
+               <br>
+              <input type="submit" id="submit-btn" class="btn btn-primary">
+              
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Add Bootstrap JS and Popper.js (if needed) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/8.9.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.2/firebase-auth.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="register.js"></script>
+</body>
+</html>
