@@ -13,12 +13,12 @@ const firebaseConfig = {
   const database = firebase.database();
   const createUserForm = document.getElementById('Register-form');
   const createUserBtn = document.getElementById('register-btn');
+  let user,uid;
   
   createUserBtn.addEventListener('click', e => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    let user,uid;
     if(isvalidpass())
     {
     // Create new user in Firebase Authentication
@@ -47,8 +47,7 @@ const firebaseConfig = {
         let verifednum=true;
         const submitbtn = document.getElementById('submit-btn');
         submitbtn.addEventListener('click', e => {
-          if(Boolean(verifednum))
-          {
+          
           e.preventDefault();
           // Collect additional user details
           var fname = getElementVal('firstName');
@@ -104,6 +103,8 @@ const firebaseConfig = {
               // Clear form inputs
               saveMessage(fname,lname,gender,email,number,teamname,webadd,teamem,restype,lat,lon,city,district,missionval,teamhis,teamequip,teamtrain);
               createUserForm.reset();
+              const rem = document.getElementById('Register-form');
+              const regis = document.getElementById('register');
               rem.style.display = 'block';
               regis.style.display = 'none';
 
@@ -112,10 +113,6 @@ const firebaseConfig = {
               console.error('Failed to create user data:', error);
               alert('Failed to create user data:' + error.message);
             });
-          }
-          else{
-            alert('Phone number is not verified');
-          }
         });
     
 
